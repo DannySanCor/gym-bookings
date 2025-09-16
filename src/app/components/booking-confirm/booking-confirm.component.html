@@ -1,0 +1,94 @@
+<div class="confirm" *ngIf="booking">
+  <div class="confirm__header">
+    <h1>Confirmar reserva</h1>
+    <span class="confirm__step">Paso 2 de 2</span>
+  </div>
+
+  <div class="confirm__content">
+    <div class="confirm__main">
+      <div class="class__banner" [style.background-image]="'url(' + (booking.imageUrl || '') + ')'">
+        <div class="class__badges">
+          <span class="badge">{{ booking.datetime | date:'EEE · HH:mm' }}</span>
+          <span class="badge">{{ booking.durationMinutes }} min</span>
+        </div>
+      </div>
+
+      <div class="class__info">
+        <h2>{{ booking.title }} — {{ booking.datetime | date:'EEE, HH:mm' }}</h2>
+        <div class="instructor">
+          <div class="instructor__avatar">👤</div>
+          <div class="instructor__details">
+            <div class="instructor__name">{{ booking.instructor }}</div>
+            <div class="instructor__meta">Sala 2 • {{ booking.level }} • {{ booking.durationMinutes }} min</div>
+          </div>
+        </div>
+
+        <div class="booking__details">
+          <div class="detail__row">
+            <span class="detail__label">Cupos disponibles</span>
+            <span class="detail__value">{{ booking.reserved }}/{{ booking.capacity }}</span>
+          </div>
+          <div class="detail__row">
+            <span class="detail__label">Cantidad de plazas</span>
+            <input type="number" [(ngModel)]="spots" min="1" max="5" class="input">
+          </div>
+          <div class="detail__row">
+            <span class="detail__label">Método de pago</span>
+            <span class="detail__value">Tarjeta terminada en ••84</span>
+          </div>
+          <div class="detail__row">
+            <span class="detail__label">Notas para el instructor (opcional)</span>
+            <textarea [(ngModel)]="notes" class="textarea" placeholder="Escribe aquí..."></textarea>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn--primary" (click)="confirm()">Confirmar reserva</button>
+          <button class="btn btn--secondary" (click)="cancel()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="confirm__sidebar">
+      <div class="summary">
+        <h3>Resumen</h3>
+        <div class="summary__item">
+          <span>Clase:</span>
+          <span>{{ booking.title }}</span>
+        </div>
+        <div class="summary__item">
+          <span>Fecha:</span>
+          <span>{{ booking.datetime | date:'EEE, HH:mm' }}</span>
+        </div>
+        <div class="summary__item">
+          <span>Ubicación:</span>
+          <span>Sala 2</span>
+        </div>
+        <div class="summary__item">
+          <span>Nivel:</span>
+          <span>{{ booking.level }}</span>
+        </div>
+        <div class="summary__item">
+          <span>Duración:</span>
+          <span>{{ booking.durationMinutes }} min</span>
+        </div>
+        <div class="summary__item">
+          <span>Plazas:</span>
+          <span>{{ spots }}</span>
+        </div>
+        <div class="summary__item">
+          <span>Precio:</span>
+          <span>$8.00</span>
+        </div>
+        <div class="summary__item summary__total">
+          <span>Total:</span>
+          <span>$8.00</span>
+        </div>
+      </div>
+
+      <div class="confirmation__message">
+        Tu reserva será confirmada y recibirás un email con los detalles.
+      </div>
+    </div>
+  </div>
+</div>

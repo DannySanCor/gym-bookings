@@ -1,0 +1,60 @@
+<section class="detail" *ngIf="booking; else empty">
+  <div class="detail__banner" *ngIf="showHeader" [style.background-image]="'url(' + (booking.imageUrl || '') + ')'">
+    <div class="detail__badges">
+      <span class="badge">{{ booking.datetime | date:'EEE · HH:mm' }}</span>
+      <span class="badge" *ngIf="booking.durationMinutes">{{ booking.durationMinutes }} min</span>
+    </div>
+  </div>
+
+  <div class="detail__content">
+    <div class="detail__header">
+      <h2 class="detail__title">{{ booking.title }}</h2>
+      <div class="detail__meta">
+        <span class="detail__capacity">👥 {{ booking.reserved }}/{{ booking.capacity }}</span>
+        <span class="detail__level" *ngIf="booking.level">{{ booking.level }}</span>
+        <a class="detail__cta">Ver más</a>
+      </div>
+    </div>
+
+    <div class="detail__instructor">
+      <div class="instructor__avatar">👤</div>
+      <div class="instructor__info">
+        <div class="instructor__name">{{ booking.instructor }}</div>
+        <div class="instructor__details">Sala 2 • {{ booking.title }} • {{ booking.durationMinutes }} min</div>
+      </div>
+    </div>
+
+    <div class="detail__info">
+      <div class="info__row">
+        <span class="info__label">Fecha:</span>
+        <span class="info__value">{{ booking.datetime | date:'fullDate' }} - {{ booking.datetime | date:'shortTime' }}</span>
+      </div>
+      <div class="info__row">
+        <span class="info__label">Cupos:</span>
+        <span class="info__value">{{ booking.reserved }}/{{ booking.capacity }}</span>
+      </div>
+      <div class="info__row">
+        <span class="info__label">Nivel:</span>
+        <span class="info__value">{{ booking.level }}</span>
+      </div>
+      <div class="info__row">
+        <span class="info__label">Ubicación:</span>
+        <span class="info__value">Sala 2</span>
+      </div>
+    </div>
+
+    <div class="detail__actions">
+      <p class="detail__instruction">Selecciona la cantidad de plazas y confirma tu reserva.</p>
+      <div class="detail__buttons">
+        <button class="btn btn--primary" (click)="reserve()" [disabled]="booking.reserved >= booking.capacity">
+          Reservar
+        </button>
+        <button class="btn btn--secondary" (click)="goBack()">Volver</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #empty>
+  <div class="placeholder">Selecciona una clase para ver el detalle</div>
+</ng-template>

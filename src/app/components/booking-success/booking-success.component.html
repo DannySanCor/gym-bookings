@@ -1,0 +1,145 @@
+<div class="success" *ngIf="booking">
+  <div class="success__header">
+    <h1>Reserva confirmada</h1>
+    <button class="receipt__btn">Recibo</button>
+    <button class="btn btn--secondary" (click)="goBack()">Volver a la lista</button>
+  </div>
+
+  <div class="success__content">
+    <div class="success__main">
+      <div class="booking__card">
+        <div class="booking__banner">
+          <div class="booking__status">
+            <h2>¡Tu clase está reservada!</h2>
+            <span class="booking__id">ID reserva: {{ bookingId }}</span>
+          </div>
+        </div>
+
+        <div class="booking__image" [style.background-image]="'url(' + (booking.imageUrl || '') + ')'">
+          <div class="image__badges">
+            <span class="badge">{{ booking.datetime | date:'EEE · HH:mm' }}</span>
+            <span class="badge">{{ booking.durationMinutes }} min</span>
+          </div>
+        </div>
+
+        <div class="booking__details">
+          <div class="detail__item">
+            <span class="detail__label">Clase:</span>
+            <span class="detail__value">{{ booking.title }}</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Instructor:</span>
+            <span class="detail__value">{{ booking.instructor }}</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Sala:</span>
+            <span class="detail__value">Sala 2</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Participantes:</span>
+            <span class="detail__value">1</span>
+          </div>
+        </div>
+
+        <div class="pricing__breakdown">
+          <div class="pricing__item">
+            <span>Precio:</span>
+            <span>$8.00</span>
+          </div>
+          <div class="pricing__item">
+            <span>Impuestos:</span>
+            <span>$0.64</span>
+          </div>
+          <div class="pricing__item">
+            <span>Comisión:</span>
+            <span>$0.36</span>
+          </div>
+          <div class="pricing__total">
+            <span>Total pagado:</span>
+            <span>${{ totalPaid.toFixed(2) }}</span>
+          </div>
+        </div>
+
+        <div class="booking__actions">
+          <button class="btn btn--primary">
+            <span>📥</span>
+            Descargar recibo
+          </button>
+          <button class="btn btn--secondary">
+            <span>📤</span>
+            Compartir
+          </button>
+        </div>
+      </div>
+
+      <div class="access__card">
+        <div class="access__header">
+          <h3>Tu acceso</h3>
+          <span class="access__subtitle">Preséntalo al llegar</span>
+        </div>
+
+        <div class="qr__placeholder">
+          <span>Código QR</span>
+        </div>
+
+        <div class="location__info">
+          <div class="location__item">
+            <span class="location__label">Dirección:</span>
+            <span class="location__value">Av. Centro 123</span>
+          </div>
+          <div class="location__item">
+            <span class="location__label">Teléfono:</span>
+            <span class="location__value">+34 600 123 456</span>
+          </div>
+          <div class="location__item">
+            <span class="location__label">Política:</span>
+            <span class="location__value">Cancelación hasta 2h antes</span>
+          </div>
+        </div>
+
+        <div class="access__actions">
+          <button class="btn btn--primary">
+            <span>📅</span>
+            Añadir al calendario
+          </button>
+          <button class="btn btn--secondary">
+            <span>🗺️</span>
+            Cómo llegar
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="success__sidebar">
+      <div class="account__card">
+        <h3>Tu cuenta</h3>
+        <div class="account__item">
+          <span>Cliente:</span>
+          <span>Ana García</span>
+        </div>
+        <div class="account__item">
+          <span>Email:</span>
+          <span>ana&#64;example.com</span>
+        </div>
+        <div class="account__item">
+          <span>Reservas activas:</span>
+          <span>3</span>
+        </div>
+      </div>
+
+      <div class="suggestions__card">
+        <h3>Sugerencias</h3>
+        <p class="suggestions__subtitle">También te pueden interesar estas clases:</p>
+        <div class="suggestion__item">
+          <span class="suggestion__class">Yoga Flow:</span>
+          <span class="suggestion__time">Mañana 07:00</span>
+        </div>
+        <div class="suggestion__item">
+          <span class="suggestion__class">Spin 30':</span>
+          <span class="suggestion__time">Hoy 19:00</span>
+        </div>
+        <button class="btn btn--link">Ver todas</button>
+      </div>
+    </div>
+  </div>
+</div>

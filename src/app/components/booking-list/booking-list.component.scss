@@ -1,0 +1,98 @@
+// Asegura que la lista tenga padding y las cards no queden pegadas al borde
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+.list__header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--color-text);
+}
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+.card {
+  border: none;
+  border-radius: 12px;
+  padding: 0;
+  cursor: pointer;
+  background: var(--color-panel, #1a2233);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: transform 0.08s ease, box-shadow 0.2s;
+  overflow: hidden;
+  position: relative;
+  min-height: 220px;
+}
+.card:hover {
+  transform: translateY(-2px);
+}
+.card__banner {
+  position: relative;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+.card__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  color: #ffffff;
+  font-weight: 700;
+  opacity: 0;
+  transition: all 0.3s ease;
+  transform: scale(0.9);
+}
+.card:hover .card__overlay {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.card__accordion {
+  margin-top: 12px;
+  overflow: hidden;
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+}
+.card__title {
+  margin: 0 0 16px 16px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.loading {
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 2rem;
+}
+@media (max-width: 640px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

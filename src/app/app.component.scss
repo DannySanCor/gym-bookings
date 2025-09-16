@@ -1,0 +1,177 @@
+// Variables and utilities
+:root {
+  --color-primary: #22aaff; /* accent blue */
+  --color-primary-hover: #1398ea;
+  --color-text: #e5e7eb; /* light text */
+  --color-text-muted: #9ca3af;
+  --color-border: #1f2937; /* dark border */
+  --color-background: #000000; /* page bg */
+  --color-surface: #0b0f14; /* shell sidebar bg */
+  --color-panel: #111827; /* cards/header bg */
+  --color-white: #0b0f14;
+  --shadow-color: rgba(0,0,0,0.6);
+
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  --border-radius: 8px;
+  --border-radius-sm: 4px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+  --transition: all 0.2s ease;
+}
+
+// Reset and base styles
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+// Shell layout with sidebar
+.shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  background: var(--color-background);
+}
+
+.shell__sidebar {
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  padding: var(--spacing-xl) var(--spacing-md);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  padding: 16px 0;
+}
+
+.brand__icon {
+  width: 28px;
+  height: 28px;
+  color: var(--color-text);
+}
+
+.brand__text {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.menu__item:hover {
+  background: rgba(255,255,255,0.05);
+}
+
+.menu__item--active {
+  background: rgba(34,170,255,0.15);
+  color: #eaf6ff;
+  border-left: 3px solid var(--color-primary);
+}
+
+.menu__icon {
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+}
+
+.menu__separator {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 8px 16px;
+}
+
+.shell__main { display: flex; flex-direction: column; }
+
+.app__header {
+  background: var(--color-panel);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-lg) 0;
+  box-shadow: 0 1px 0 0 var(--color-border);
+
+  h1 {
+    margin: 0;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+}
+
+.app__main {
+  flex: 1;
+  padding: var(--spacing-lg) 0;
+}
+
+.app__content {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* Spacing between header title and cards */
+.app__main .app__content { margin-top: 56px; }
+
+// Responsive design
+@media (max-width: 768px) {
+  .shell { grid-template-columns: 1fr; }
+  .shell__sidebar { display: none; }
+  .app__content {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .app__header {
+    padding: var(--spacing-md);
+
+    h1 {
+      margin-top: 48px;
+      font-size: 1.5rem;
+    }
+  }
+
+  .app__main {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  .app__header h1 {
+    font-size: 1.25rem;
+  }
+}

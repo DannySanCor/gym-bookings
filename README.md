@@ -1,27 +1,38 @@
-# GymBookings
+# Gym Bookings – Prueba Técnica Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.9.
+Aplicación Angular para un sistema de reservas de turnos de gimnasio.
 
-## Development server
+## Requisitos
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Node.js 18+
+- Angular CLI (se usa vía `npx`)
 
-## Code scaffolding
+## Instalación
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+npm install
+```
 
-## Build
+## Ejecución
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+npx ng serve --open
+```
+Abrirá `http://localhost:4200/`.
 
-## Running unit tests
+## Estructura de componentes
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `AppComponent`: estructura general y layout.
+- `BookingListComponent`: lista de reservas disponibles.
+- `BookingDetailComponent`: detalle de la reserva seleccionada.
 
-## Running end-to-end tests
+## Comunicación entre componentes
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+La comunicación se implementa usando `@Output` en `BookingListComponent` para emitir la reserva seleccionada hacia el componente contenedor (`AppComponent`), que a su vez pasa la selección como `@Input` a `BookingDetailComponent`. Alternativamente, puede usarse un `Subject` en un servicio para desacoplar la selección.
 
-## Further help
+## Consumo de datos
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+`BookingsService` expone un observable que simula `GET /bookings` (mock local o interceptor). `BookingListComponent` se subscribe para renderizar tarjetas, y al seleccionar una, se emite al contenedor.
+
+
+## Git 

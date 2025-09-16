@@ -1,0 +1,16 @@
+<section class="list">
+  <div class="cards" *ngIf="bookings$ | async as bookings; else loading">
+    <article class="card" *ngFor="let item of bookings">
+      <a [routerLink]="['/booking', item.id]" class="card__banner" [style.background-image]="'url(' + (item.imageUrl || '') + ')'">
+        <h3 class="card__title">{{ item.title }}</h3>
+        <div class="card__overlay">Ver más</div>
+      </a>
+    </article>
+  </div>
+
+  <ng-template #loading>
+    <div class="loading">Cargando reservas…</div>
+  </ng-template>
+</section>
+
+
